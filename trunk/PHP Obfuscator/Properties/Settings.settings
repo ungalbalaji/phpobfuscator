@@ -1,0 +1,39 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PHP_Obfuscator.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="lastSourceDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="lastTargetDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="excludeFiles" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="excludedFunctions" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="excludedVariables" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;$password:checked&lt;/string&gt;
+  &lt;string&gt;$database:checked&lt;/string&gt;
+  &lt;string&gt;$username:checked&lt;/string&gt;
+  &lt;string&gt;$server:checked&lt;/string&gt;
+  &lt;string&gt;$_SERVER:checked&lt;/string&gt;
+  &lt;string&gt;$HTTP_SERVER_VARS:checked&lt;/string&gt;
+  &lt;string&gt;$_ENV:checked&lt;/string&gt;
+  &lt;string&gt;$_COOKIE:checked&lt;/string&gt;
+  &lt;string&gt;$_GET:checked&lt;/string&gt;
+  &lt;string&gt;$_POST:checked&lt;/string&gt;
+  &lt;string&gt;$_FILES:checked&lt;/string&gt;
+  &lt;string&gt;$_REQUEST:checked&lt;/string&gt;
+  &lt;string&gt;$_SESSION:checked&lt;/string&gt;
+  &lt;string&gt;$GLOBALS:checked&lt;/string&gt;
+  &lt;string&gt;$this:checked&lt;/string&gt;
+  &lt;string&gt;$php_errormsg:checked&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
