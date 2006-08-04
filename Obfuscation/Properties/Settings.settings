@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Obfuscation.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="stringPattern" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">(".*?[^\\]")|('.*?[^\\]')</Value>
+    </Setting>
+    <Setting Name="variablePattern" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*</Value>
+    </Setting>
+    <Setting Name="functionDeclarationPattern" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(?&lt;=function[\s+])[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(?=\s*\()</Value>
+    </Setting>
+    <Setting Name="functionPattern" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(?&lt;![$])(?&lt;=[\s=\+\-\*\(\)\!\&gt;,;@])[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*(?=\s*\()</Value>
+    </Setting>
+    <Setting Name="classDeclarationPattern" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(?&lt;=class\s)[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
