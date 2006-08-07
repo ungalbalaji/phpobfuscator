@@ -331,8 +331,8 @@ namespace Obfuscation
             // remove newlines
             if (_removeWhitespace)
             {
-                codeBlock = codeBlock.Replace('\n', ' ');
-                codeBlock = codeBlock.Replace('\r', ' ');
+                Regex whitespacePattern = new Regex("([\t\n\r])");
+                codeBlock = whitespacePattern.Replace(codeBlock, " ");
             }
 
             if (_obfuscateFunctionNames)
