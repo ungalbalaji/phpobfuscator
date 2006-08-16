@@ -225,7 +225,16 @@ namespace Obfuscation
             foreach (string file in _targetFiles)
             {
                 _ui.StatusUpdate("Obfuscating " + file);
-                Obfuscate(file);
+
+                try
+                {
+                    Obfuscate(file);
+                }
+                catch(Exception exp)
+                {
+                    _ui.Error(exp.Message);
+                    return;
+                }
             }
 
             if (_obfuscateFunctionNames)
@@ -234,8 +243,17 @@ namespace Obfuscation
                 // go through the files again, and replace the function names. 
                 foreach (string file in _targetFiles)
                 {
-                    _ui.StatusUpdate("Obfuscating Function Names in " + file);
-                    RenameFunctions(file);
+                    try
+                    {
+                        _ui.StatusUpdate("Obfuscating Function Names in " + file);
+                        RenameFunctions(file);
+                    }
+                    catch(Exception exp)
+                    {
+                        _ui.Error(exp.Message);
+                        return;
+                    }
+
                 }
 
             }
@@ -579,6 +597,12 @@ namespace Obfuscation
             if (info.Extension.ToLower() != ".php")
                 return;
 
+            // if the file is read only, change the attribute. 
+            if (FileAttributes.ReadOnly == (info.Attributes & FileAttributes.ReadOnly))
+            {
+                File.SetAttributes(filename, info.Attributes & ~FileAttributes.ReadOnly);
+            }
+
             FileStream stream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
             StreamReader reader = new StreamReader(stream);
 
@@ -606,6 +630,7 @@ namespace Obfuscation
             writer.Write(fileContents);
             writer.Close();
             stream.Close();
+            
         }
 
         /// <summary>
