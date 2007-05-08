@@ -3,7 +3,8 @@
   <Profiles />
   <Settings>
     <Setting Name="stringPattern" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">(".*?[^\\]")|('.*?[^\\]')</Value>
+      <Value Profile="(Default)">(".*?[^\\]")|('.*?[^\\]')|&lt;&lt;&lt;(\w+)(.|\s)+?(\4)
+</Value>
     </Setting>
     <Setting Name="variablePattern" Type="System.String" Scope="Application">
       <Value Profile="(Default)">\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*</Value>
