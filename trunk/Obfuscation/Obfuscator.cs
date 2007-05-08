@@ -320,14 +320,16 @@ namespace Obfuscation
         /// <returns>Obfuscated block of code. </returns>
         private string ObfuscateBlock(string codeBlock)
         {
-            // first remove comments in the form /* */
+            // first remove comments in the form /* */ that are not within strings
             int start = 0;
             while (start >= 0)
             {
-                start = codeBlock.IndexOf("/*");
+                start = IndexOf("/*", codeBlock, 0, false);
+                //start = codeBlock.IndexOf("/*");
                 if (start >= 0)
                 {
-                    int end = codeBlock.IndexOf("*/", start);
+                    int end = IndexOf("/*", codeBlock, start, true);
+                    //int end = codeBlock.IndexOf("*/", start);
                     if (end >= 0)
                         codeBlock = codeBlock.Remove(start, end - start + 2);
                 }
@@ -593,7 +595,7 @@ namespace Obfuscation
         {
             // if the file does not end in ".php", return 
             FileInfo info = new FileInfo(filename);
-
+            
             if (info.Extension.ToLower() != ".php")
                 return;
 
@@ -605,8 +607,10 @@ namespace Obfuscation
 
             FileStream stream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
             StreamReader reader = new StreamReader(stream);
-
+            
             string fileContents = reader.ReadToEnd();
+            Encoding encoding = reader.CurrentEncoding;
+
             reader.Close();
             stream.Close();
 
@@ -625,7 +629,7 @@ namespace Obfuscation
             }
 
             stream = new FileStream(filename, FileMode.Create);
-            StreamWriter writer = new StreamWriter(stream);
+            StreamWriter writer = new StreamWriter(stream, encoding);
             writer.Write("<? /* This file encoded by Raizlabs PHP Obfuscator http://www.raizlabs.com/software */ ?>\n");
             writer.Write(fileContents);
             writer.Close();

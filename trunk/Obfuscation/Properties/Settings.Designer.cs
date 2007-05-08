@@ -25,7 +25,7 @@ namespace Obfuscation.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("(\".*?[^\\\\]\")|(\'.*?[^\\\\]\')")]
+        [global::System.Configuration.DefaultSettingValueAttribute("(\".*?[^\\\\]\")|(\'.*?[^\\\\]\')|<<<(\\w+)(.|\\s)+?(\\4)\r\n")]
         public string stringPattern {
             get {
                 return ((string)(this["stringPattern"]));
