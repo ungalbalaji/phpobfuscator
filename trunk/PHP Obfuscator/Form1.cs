@@ -58,7 +58,8 @@ namespace PHP_Obfuscator
                         CheckState check;
 
                         FileInfo info = new FileInfo(file);
-                        if (info.Extension.ToLower() == ".php")
+                        string ext = info.Extension.ToLower();
+                        if (ext == ".php" || ext == ".php5" || ext == ".php4")
                             check = CheckState.Checked;
                         else
                             check = CheckState.Unchecked;

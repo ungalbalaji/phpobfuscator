@@ -328,7 +328,7 @@ namespace Obfuscation
                 //start = codeBlock.IndexOf("/*");
                 if (start >= 0)
                 {
-                    int end = IndexOf("/*", codeBlock, start, true);
+                    int end = IndexOf("*/", codeBlock, start, true);
                     //int end = codeBlock.IndexOf("*/", start);
                     if (end >= 0)
                         codeBlock = codeBlock.Remove(start, end - start + 2);
@@ -469,7 +469,8 @@ namespace Obfuscation
             // if the file does not end in ".php", return 
             FileInfo info = new FileInfo(filename);
 
-            if (info.Extension.ToLower() != ".php")
+            string ext = info.Extension.ToLower();
+            if (ext != ".php" && ext != ".php5" && ext != ".php4")
                 return;
 
             FileStream stream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -595,8 +596,10 @@ namespace Obfuscation
         {
             // if the file does not end in ".php", return 
             FileInfo info = new FileInfo(filename);
+
+            string ext = info.Extension.ToLower();
             
-            if (info.Extension.ToLower() != ".php")
+            if (ext != ".php" && ext != ".php5" && ext != "php4")
                 return;
 
             // if the file is read only, change the attribute. 
