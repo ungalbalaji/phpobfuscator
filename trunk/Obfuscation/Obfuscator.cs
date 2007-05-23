@@ -633,7 +633,7 @@ namespace Obfuscation
 
             stream = new FileStream(filename, FileMode.Create);
             StreamWriter writer = new StreamWriter(stream, encoding);
-            writer.Write("<? /* This file encoded by Raizlabs PHP Obfuscator http://www.raizlabs.com/software */ ?>\n");
+            writer.Write("<?php /* This file encoded by Raizlabs PHP Obfuscator http://www.raizlabs.com/software */ ?>\n");
             writer.Write(fileContents);
             writer.Close();
             stream.Close();
