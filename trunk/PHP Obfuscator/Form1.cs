@@ -108,19 +108,47 @@ namespace PHP_Obfuscator
 
         private void obfuscateButton_Click(object sender, EventArgs e)
         {
-           
+            string strSource = sourceDirectory.Text;
+            string strTarget = targetDirectory.Text;
+
+            // strip off any ending slashes
+            char[] slashes = new char[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
+            strSource = strSource.TrimEnd(slashes);
+            strTarget = strTarget.TrimEnd(slashes);
+
             Properties.Settings settings = Properties.Settings.Default;
-            settings["lastTargetDir"] = targetDirectory.Text;
-            settings["lastSourceDir"] = sourceDirectory.Text;
+            settings["lastTargetDir"] = strTarget;
+            settings["lastSourceDir"] = strSource;
             settings.Save();
 
             ObfuscationConfig config = GenerateConfig();
 
+            
             if (sourceDirectory.Text != "" && targetDirectory.Text != "")
             {
-                if (Directory.Exists(targetDirectory.Text))
+                // make sure the target and source directories are not the same
+                if (strSource.ToLower() == strTarget.ToLower())
                 {
-                    if (DialogResult.Yes == MessageBox.Show("Target Directory exists. Are you sure you would like to over-write it?",
+                    MessageBox.Show("Target directory can not be the same as the source directory",
+                                    "Problem with target",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    return;
+                }
+
+                // make sure the target is not a parent of the source
+                else if(strSource.ToLower().Contains(strTarget.ToLower()))
+                {
+                    MessageBox.Show("Target directory can not be a parent of the source directory",
+                                    "Problem with target",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    return;
+                }
+                
+                else if (Directory.Exists(strTarget))
+                {
+                    if (DialogResult.Yes == MessageBox.Show("Target Directory exists. All files and directories in the target directory will be removed. Are you sure you want to do this?",
                                                             "Delete Target?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation))
                     {
                         Enable(false);
